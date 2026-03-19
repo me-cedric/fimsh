@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <!-- Body — oval segmented form -->
+  <ellipse cx="260" cy="270" rx="155" ry="105" fill="url(#g)" opacity="0.9"/>
+  <!-- Segment lines on body -->
+  <path d="M160 240 Q260 220 360 240" stroke="#030303" stroke-width="3" fill="none" opacity="0.3"/>
+  <path d="M145 270 Q260 250 375 270" stroke="#030303" stroke-width="3" fill="none" opacity="0.3"/>
+  <path d="M150 300 Q260 280 370 300" stroke="#030303" stroke-width="3" fill="none" opacity="0.3"/>
+  <!-- Tail fan -->
+  <path d="M400 240 Q450 200 440 160 Q420 190 400 210Z" fill="#7c3aed" opacity="0.7"/>
+  <path d="M410 270 Q470 260 475 220 Q445 245 415 250Z" fill="#7c3aed" opacity="0.6"/>
+  <path d="M400 300 Q450 340 440 380 Q420 350 400 330Z" fill="#7c3aed" opacity="0.7"/>
+  <path d="M410 285 Q470 290 475 330 Q445 305 415 295Z" fill="#7c3aed" opacity="0.6"/>
+  <!-- Side lobes/fins -->
+  <path d="M180 185 Q200 140 240 130 Q220 160 210 190Z" fill="#a78bfa" opacity="0.6"/>
+  <path d="M230 175 Q245 125 285 110 Q270 145 255 175Z" fill="#a78bfa" opacity="0.5"/>
+  <path d="M290 170 Q300 120 340 105 Q330 140 315 170Z" fill="#a78bfa" opacity="0.4"/>
+  <path d="M180 355 Q200 400 240 410 Q220 380 210 350Z" fill="#a78bfa" opacity="0.6"/>
+  <path d="M230 365 Q245 415 285 430 Q270 395 255 365Z" fill="#a78bfa" opacity="0.5"/>
+  <path d="M290 370 Q300 420 340 435 Q330 400 315 370Z" fill="#a78bfa" opacity="0.4"/>
+  <!-- Front appendages — the iconic grasping arms -->
+  <path d="M115 230 Q80 190 50 195 Q65 210 75 225 Q55 215 30 220 Q50 235 75 240 Q60 240 40 250 Q65 252 90 248 L110 250Z" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="2"/>
+  <path d="M115 310 Q80 350 50 345 Q65 330 75 315 Q55 325 30 320 Q50 305 75 300 Q60 300 40 290 Q65 288 90 292 L110 290Z" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="2"/>
+  <!-- Eyes — large compound eyes -->
+  <circle cx="145" cy="245" r="18" fill="#1e1b4b"/>
+  <circle cx="145" cy="245" r="14" fill="#030303"/>
+  <circle cx="150" cy="240" r="5" fill="#c4b5fd" opacity="0.7"/>
+  <circle cx="145" cy="295" r="18" fill="#1e1b4b"/>
+  <circle cx="145" cy="295" r="14" fill="#030303"/>
+  <circle cx="150" cy="290" r="5" fill="#c4b5fd" opacity="0.7"/>
+  <!-- Mouth — circular pineapple-ring mouth -->
+  <circle cx="120" cy="270" r="12" fill="none" stroke="#1e1b4b" stroke-width="4"/>
+  <circle cx="120" cy="270" r="7" fill="#1e1b4b"/>
+</svg>
