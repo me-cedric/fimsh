@@ -1,0 +1,471 @@
+@import "tailwindcss";
+
+/* ── Block Dark Reader ── */
+meta[name="darkreader"],
+meta[name="color-scheme"] {
+  display: none !important;
+}
+
+html {
+  color-scheme: dark only !important;
+}
+
+html[data-darkreader-mode],
+html[data-darkreader-scheme] {
+  --darkreader-neutral-background: none !important;
+  --darkreader-neutral-text: none !important;
+  --darkreader-selection-background: none !important;
+  --darkreader-selection-text: none !important;
+}
+
+/* Force all elements to resist Dark Reader overrides */
+*,
+*::before,
+*::after {
+  --darkreader-inline-bgcolor: initial !important;
+  --darkreader-inline-color: initial !important;
+  --darkreader-inline-border: initial !important;
+  --darkreader-inline-bgimage: initial !important;
+  --darkreader-inline-outline: initial !important;
+  --darkreader-inline-fill: initial !important;
+  --darkreader-inline-stroke: initial !important;
+  --darkreader-inline-boxshadow: initial !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: #030303;
+  color: #fff;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ── Animations ── */
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Entrance sequence ── */
+
+@keyframes entrance-header {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes entrance-video {
+  0% {
+    opacity: 0;
+    clip-path: inset(10% 10% 10% 10%);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0% 0% 0% 0%);
+  }
+}
+
+@keyframes entrance-footer {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes entrance-footer-content {
+  0%, 60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes entrance-side {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scaleY(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scaleY(1);
+  }
+}
+
+@keyframes entrance-corner {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes reveal-line {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.anim-entrance-header {
+  opacity: 0;
+  animation: entrance-header 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.anim-entrance-video {
+  opacity: 0;
+  animation: entrance-video 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.anim-entrance-footer {
+  transform-origin: center;
+  opacity: 0;
+  animation: entrance-footer 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.anim-entrance-footer-content {
+  opacity: 0;
+  animation: entrance-footer-content 0.8s ease 0.9s forwards;
+}
+
+.anim-entrance-line {
+  transform-origin: center;
+  transform: scaleX(0);
+  animation: reveal-line 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.anim-entrance-corner-tl {
+  opacity: 0;
+  transform-origin: top left;
+  animation: entrance-corner 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
+}
+.anim-entrance-corner-tr {
+  opacity: 0;
+  transform-origin: top right;
+  animation: entrance-corner 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
+}
+.anim-entrance-corner-bl {
+  opacity: 0;
+  transform-origin: bottom left;
+  animation: entrance-corner 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1s forwards;
+}
+.anim-entrance-corner-br {
+  opacity: 0;
+  transform-origin: bottom right;
+  animation: entrance-corner 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s forwards;
+}
+
+.anim-entrance-side-left {
+  opacity: 0;
+  animation: entrance-side 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+}
+.anim-entrance-side-right {
+  opacity: 0;
+  animation: entrance-side 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+@keyframes grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  20% {
+    transform: translate(-15%, 5%);
+  }
+  30% {
+    transform: translate(7%, -25%);
+  }
+  40% {
+    transform: translate(-5%, 25%);
+  }
+  50% {
+    transform: translate(-15%, 10%);
+  }
+  60% {
+    transform: translate(15%, 0%);
+  }
+  70% {
+    transform: translate(0%, 15%);
+  }
+  80% {
+    transform: translate(3%, 35%);
+  }
+  90% {
+    transform: translate(-10%, 10%);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes border-rotate {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+@keyframes scan {
+  0% {
+    top: -2px;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Film grain overlay ── */
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  width: 300%;
+  height: 300%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  animation: grain 8s steps(10) infinite;
+  z-index: 50;
+}
+
+/* ── Scanline ── */
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.15),
+    transparent
+  );
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* ── CRT / VHS effect ── */
+
+.crt-video {
+  filter: url(#crt) saturate(1.1) contrast(1.05);
+}
+
+/* Repeating horizontal scanlines over the video */
+.crt-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* VHS tracking band — a translucent bar that drifts down */
+@keyframes vhs-tracking {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  50% {
+    top: 110%;
+    opacity: 0;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+.crt-tracking {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.02) 20%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.02) 80%,
+    transparent
+  );
+  animation: vhs-tracking 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Subtle barrel-warp on the whole video container via perspective */
+@supports (backdrop-filter: blur(1px)) {
+  .crt-video {
+    border-radius: 2px;
+  }
+}
+
+/* ── Glassmorphism card ── */
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Gradient border trick ── */
+
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.4),
+    transparent 40%,
+    transparent 60%,
+    rgba(59, 130, 246, 0.3)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Mono font utility ── */
+
+.font-mono {
+  font-family: "Space Mono", ui-monospace, monospace;
+}
+
+/* ── Scrollbar hide ── */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
